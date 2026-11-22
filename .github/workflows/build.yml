@@ -8,6 +8,7 @@ on:
 env:
   DOTNET_VERSION: '8.0.x'
   PROJECT_PATH: 'projekt1.csproj'
+  PROJECT_PATH: './src/MyApp/MyApp.csproj'
 
 jobs:
   build:
