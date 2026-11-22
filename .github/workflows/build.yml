@@ -1,25 +1,31 @@
 name: Build .NET project
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  PROJECT_PATH: 'projekt1.csproj'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-env:
-  DOTNET_VERSION: 9.0.x
-  PROJECT_PATH: ./src/MyApp/MyApp.csproj
 
-steps:
+    steps:
       - name: Confirm runner
         shell: bash
         run: echo "Runner is ready"
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Restore dependencies
         shell: bash
         run: dotnet restore "$PROJECT_PATH"
